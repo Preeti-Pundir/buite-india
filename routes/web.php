@@ -1,7 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{AdminPageController,StorePageController};
+use App\Http\Controllers\{AdminPageController, StoreController, StorePageController,ProductController};
+use App\Http\Middleware\CheckStatus;
+use Illuminate\Support\Facades\Auth;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,4 +33,11 @@ Route::prefix('admin')->group(function () {
 Route::prefix('store')->group(function () {
     Route::get('/home', [StorePageController::class, 'index'])->name('storehome');
     Route::get('/usersmange', [StorePageController::class, 'store'])->name('storeusersmange');
+});
+Route::resource('products', ProductController::class);
+Route::resource('store', StoreController::class);
+
+Route::middleware([CheckStatus::class])->group(function(){
+
+    Route::get('store', [StoreController::class,'index']);
 });

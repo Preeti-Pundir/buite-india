@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\product;
 use Illuminate\Http\Request;
-
+//name price disc 
 class ProductController extends Controller
 {
     /**
@@ -14,8 +14,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
-        return response(["product"=>product::all()],200);
+        $products = Product::paginate(5);
+
+        return view('products.index', compact('products'));
+       // return response(["product"=>product::all()],200);
     }
 
     /**
@@ -25,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create',compact('products'));
     }
 
     /**
@@ -36,7 +38,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'disc' => 'required',
+            'price' => 'required'
+        ]);
+
+        Product::create($request->all());
+
+        return redirect()->route('products.index')
+            ->with('success', 'Product created successfully.');
     }
 
     /**
@@ -47,8 +58,8 @@ class ProductController extends Controller
      */
     public function show(product $product,$id)
     {
-        //
-        return response(["product"=>$product->where("slug",$id)->get()],200);
+        return view('products.show',compact('products'));
+       // return response(["product"=>$product->where("slug",$id)->get()],200);
     }
 
     /**
@@ -59,7 +70,7 @@ class ProductController extends Controller
      */
     public function edit(product $product)
     {
-        //
+        return view('products.edit',compact('products'));
     }
 
     /**
@@ -82,6 +93,9 @@ class ProductController extends Controller
      */
     public function destroy(product $product)
     {
-        //
+        $product->delete();
+
+        return redirect()->route('products.index')
+            ->with('success', 'Product deleted successfully');
     }
 }

@@ -27,6 +27,7 @@ class CreateProductsTable extends Migration
             $table->text('Key_features');
             $table->timestamps();
         });
+            // name price disc 
     }
 
     /**
