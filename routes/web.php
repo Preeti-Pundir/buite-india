@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{AdminPageController, StoreController, StorePageController,ProductController};
+use App\Http\Controllers\{AdminPageController, LogoutController, StoreController, StorePageController,ProductController};
 use App\Http\Middleware\CheckStatus;
 use Illuminate\Support\Facades\Auth;
+
 
 
 /*
@@ -28,6 +29,7 @@ Auth::routes();
 Route::prefix('admin')->group(function () {
     Route::get('/home', [AdminPageController::class, 'index'])->name('adminhome');
     Route::get('/store', [AdminPageController::class, 'store'])->name('adminstore');
+    route::post('/logout',LogoutController::class,'index');
 });
 
 Route::prefix('store')->group(function () {
@@ -41,3 +43,5 @@ Route::middleware([CheckStatus::class])->group(function(){
 
     Route::get('store', [StoreController::class,'index']);
 });
+
+//route::get('/logout',LogoutController::class,'index');
