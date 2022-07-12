@@ -28,13 +28,17 @@
                         <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-                        {{-- <a href="{{ route('logout') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log out</a> --}}
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
-                            Logout</a>
+{{--                         
+                        <a href="{{ route('/logout') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log out</a>  --}}
+                        {{-- <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+                            Logout</a> --}}
                                 
-                        <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                         {{-- <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
-                        </form>
+                        </form>  --}}
+                         {{-- <li class="nav-item">
+                            <a class="nav-link" href="{{ url('logout') }}"> Logout </a>
+                        </li>  --}}
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
