@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\product;
+use App\Models\Product;
 use Illuminate\Http\Request;
-//name price disc 
+
 class ProductController extends Controller
 {
     /**
@@ -14,10 +14,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(5);
+        $products = Product::latest()->paginate(5);
 
         return view('products.index', compact('products'));
-       // return response(["product"=>product::all()],200);
     }
 
     /**
@@ -27,7 +26,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create',compact('products'));
+        return view('products.create');
     }
 
     /**
@@ -40,8 +39,9 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'disc' => 'required',
-            'price' => 'required'
+            'description' => 'required',
+            'price' => 'required',
+            'User_Price' =>'required',
         ]);
 
         Product::create($request->all());
@@ -53,45 +53,52 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\product  $product
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(product $product,$id)
+    public function show(Product $product)
     {
-        return view('products.show',compact('products'));
-       // return response(["product"=>$product->where("slug",$id)->get()],200);
+        return view('products.show', compact('product'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\product  $product
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(product $product)
+    public function edit(Product $product)
     {
-        return view('products.edit',compact('products'));
+        return view('products.edit', compact('product'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\product  $product
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, product $product)
+    public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required'
+        ]);
+        $product->update($request->all());
+
+        return redirect()->route('products.index')
+            ->with('success', 'Product updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\product  $product
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(product $product)
+    public function destroy(Product $product)
     {
         $product->delete();
 

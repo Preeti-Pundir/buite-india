@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\store;
 use Illuminate\Http\Request;
+
 
 class AdminPageController extends Controller
 {
@@ -30,4 +32,11 @@ class AdminPageController extends Controller
     {
         return view('admin.store');
     }
+    public function test()
+    {
+       
+        $store = store::all();
+        return view('stores');
+        //return view('admin.stores', compact('store'));
+   }
 }

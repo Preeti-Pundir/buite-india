@@ -1,40 +1,37 @@
-@extends('layouts.storeapp')
+@extends('posts.layout')
+  
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>  </h2>
+                <h2> Show stores</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="" title="Go back"> <i class="fas fa-backward "></i> </a>
+                <a class="btn btn-primary" href="{{ route('Stores.index') }}"> Back</a>
             </div>
         </div>
     </div>
-
+   
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>
-
+                {{ $Store->name}}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Address</strong>
-
+                <strong>Address:</strong>
+                {{ $Store->Address }}
             </div>
         </div>
+
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>City</strong>
-
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Date Created</strong>
-
+                <strong>City:</strong>
+                {{ $Store->city }}
             </div>
         </div>
     </div>
+    
 @endsection

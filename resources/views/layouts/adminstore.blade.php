@@ -39,6 +39,15 @@
                                     Store
                                 </a>
                               </li>
+
+                              <li class="nav-item">
+                                <a class="nav-link" href="{{ route('adminstore') }}">
+                                    Product
+                                </a>
+                              </li>
+
+
+
                             <li class="nav-item">
                               <a class="nav-link active" aria-current="page" href="#">Active</a>
                             </li>
@@ -49,7 +58,10 @@
                               <a class="nav-link" href="#">Link</a>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link disabled">Disabled</a>
+                                <a class="nav-link" href="#">STORE2</a>
+                              </li>
+                            <li class="nav-item">
+                              <a class="nav-link disabled">Product</a>
                             </li>
                           </ul>
 
@@ -63,8 +75,7 @@
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
-
-                            @if (Route::has('register'))
+/*                            @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>

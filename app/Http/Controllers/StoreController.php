@@ -14,8 +14,8 @@ class StoreController extends Controller
      */
     public function index()
     {
-        $store = store::all();
-        return view('store.index',compact('store'));
+        $stores = store::all();
+        return view('stores.index',compact('stores'));
         //return response(["store"=>store::all()],200);
     }
 
@@ -26,7 +26,7 @@ class StoreController extends Controller
      */
     public function create()
     {
-        return view('store.create',compact('store'));
+        return view('stores.create');
     }
 
     /**
@@ -45,7 +45,7 @@ class StoreController extends Controller
 
         Store::create($request->all());
 
-        return redirect()->route('store.index')
+        return redirect()->route('stores.index')
             ->with('success', 'Store created successfully.');
     }
 
@@ -57,7 +57,7 @@ class StoreController extends Controller
      */
     public function show(store $store)
     {
-        return view('store.show',compact('store'));
+        return view('stores.show',compact('stores'));
     }
 
     /**
@@ -68,7 +68,7 @@ class StoreController extends Controller
      */
     public function edit(store $store)
     {
-        return view('store.edit',compact('store'));
+        return view('stores.edit',compact('stores'));
     }
 
     /**
@@ -93,7 +93,7 @@ class StoreController extends Controller
     {
         $store->delete();
 
-        return redirect()->route('store.index')
+        return redirect()->route('stores.index')
             ->with('success', 'store deleted successfully');
     }
 }
