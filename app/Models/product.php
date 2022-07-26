@@ -13,14 +13,15 @@ class product extends Model
     protected $table = 'products';
     public $timestamps = true;
 
-    protected $casts = [
-        'price' => 'float'
-    ];
+    // protected $casts = [
+    //     'price' => 'float'
+    // ];
 
     protected $fillable = [
         'name',
         'disc',
         'price',
+        'user_price',
         'created_at'
     ];
 }

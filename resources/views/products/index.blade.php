@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Product</h2>
+                <h2>Product curd</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-success" href="{{ route('products.create') }}"> Create New Product</a>
@@ -24,16 +24,17 @@
             <th>Name</th>
             <th>Disc</th>
             <th>Price</th>
-            <th>User_price</th>
+            <th>User_Price</th>
+            {{-- <th>Disc</th> --}}
             <th width="280px">Action</th>
         </tr>
         @foreach ($products as $product)
         <tr>
-           <td>{{$product->id}}</td>
+            <td>{{ $product->id }}</td>
             <td>{{ $product->name }}</td>
             <td>{{ $product->disc }}</td>
             <td>{{ $product->Price }}</td>
-            <td>{{ $product->User_price }}</td>
+            <td>{{ $product->User_Price }}</td>
             <td>
                 <form action="{{ route('products.destroy',$product->id) }}" method="POST">
    

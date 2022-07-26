@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\productcateguries;
 use App\Models\productcategury;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+
 
 class ProductcateguryController extends Controller
 {
@@ -12,9 +15,37 @@ class ProductcateguryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function AllCategory(){
+    //     $all_cat = productcateguries::get();
+    //     return $all_cat;
+    // }
+    // public function AddCategory(Request $request){
+
+    //     $validatedData = $request->validate([
+    //         'name' => 'required|unique:categories|max:255',
+
+    //     ],[
+    //         'name.required' => 'Please Input Category Name',
+
+    //     ]);
+    //          // Elequent method 1
+    //     Productcateguries::insert([
+    //         'name'=>$request->name,
+
+
+    //         'created_at'=>Carbon::now()
+
+    //     ]);
+
+
+    //     return Redirect()->back()->with('success','Category Inserted Successfully');
+    // }
+
     public function index()
     {
-        //
+        $all_cat = productcateguries::get();
+        return view($all_cat);
+        //return view('categories.productcategories.index',compact('all_cat'));
     }
 
     /**
